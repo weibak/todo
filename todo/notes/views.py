@@ -75,11 +75,7 @@ def register(request):
 
 
 def delete_note(request, note_id):
-    note = get_object_or_404(Note, pk=note_id)
-    form = AddNoteForm(request.POST)
-    if request.method == 'POST':
-        note.delete()
-        return redirect('index')
-
-    notes = Note.objects.all()
-    return render(request, "note_list.html", {"notes": notes, "form": form})
+    note = get_object_or_404(Note, id=note_id)
+    logger.info(f"Note with id = {note}, successfully deleted!")
+    note.delete()
+    return redirect('index')

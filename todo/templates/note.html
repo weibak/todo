@@ -1,8 +1,8 @@
 <div class="card">
-    <a href="{% url 'delete' note_id=note.id%}" class="btn btn-danger btn-sm" role="button" aria-pressed="true" > x</a>
  <div class="card-body">
      <h5 class="card-author">{{ note.author }}</h5>
      <h5 class="card-title">{{ note.title }}</h5>
    <p class="card-text">{{ note.text }}</p>
  </div>
+  <a href="{% url 'delete_note' note_id=note.id%}" class="btn btn-danger btn-sm" role="button" aria-pressed="true" > x</a>
 </div>
