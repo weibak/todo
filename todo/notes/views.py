@@ -2,11 +2,9 @@ import logging
 
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
-from django.contrib.auth import logout
+from django.shortcuts import render, redirect, get_object_or_404
 from notes.forms import AddNoteForm, AuthForm, RegisterForm
 from notes.models import Note
 
@@ -74,3 +72,14 @@ def register(request):
     else:
         form = RegisterForm()
     return render(request, "logup.html", {"form": form})
+
+
+def delete_note(request, note_id):
+    note = get_object_or_404(Note, pk=note_id)
+    form = AddNoteForm(request.POST)
+    if request.method == 'POST':
+        note.delete()
+        return redirect('index')
+
+    notes = Note.objects.all()
+    return render(request, "note_list.html", {"notes": notes, "form": form})
