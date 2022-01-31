@@ -1,5 +1,5 @@
 import logging
-
+from django.contrib.auth import logout
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
@@ -79,3 +79,8 @@ def delete_note(request, note_id):
     logger.info(f"Note with id = {note}, successfully deleted!")
     note.delete()
     return redirect('index')
+
+
+def logout_view(request):
+    logout(request)
+    return render(request, "logout.html",)
