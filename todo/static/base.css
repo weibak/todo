@@ -1,6 +1,6 @@
 body {
     background-color: darkgrey;
 }
-card{
+.card-body{
     background-color: burlywood;
 }
